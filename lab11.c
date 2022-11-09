@@ -1,3 +1,4 @@
+// 18 вариант
 #include <stdio.h>
 
 int Check (char a){
