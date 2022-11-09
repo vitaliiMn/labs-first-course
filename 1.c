@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void Move(int k, int *i_Uk, int *j_Uk, int *l_Uk){
-    int iNew \, jNew, lNew;
+    int iNew , jNew, lNew;
     int v1, v2, v3;
 
     int i=*i_Uk, j=*j_Uk, l=*l_Uk;
