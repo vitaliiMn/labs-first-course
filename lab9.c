@@ -16,11 +16,11 @@ void MinMax (int *min, int *max, int *v1, int *v2, int *v3){
         
 }
 
-void Move (int k, int *i_Uk, int *j_Uk, int *l_Uk){
+void Move (int k, int *iUk, int *jUk, int *lUk){
     int iNew, jNew, lNew;
     int v1, v2, v3;
 
-    int i  = *i_Uk, j = *j_Uk, l = *l_Uk;
+    int i  = *iUk, j = *jUk, l = *lUk;
 
     iNew = (i * i * i - j * j * j + l * l * l - k) % 20;
     v1= i * j * l -k;
@@ -34,16 +34,16 @@ void Move (int k, int *i_Uk, int *j_Uk, int *l_Uk){
     jNew = min%30;
     lNew = max%30;
     
-    *i_Uk = iNew;
-    *j_Uk = jNew;
-    *l_Uk = lNew;
+    *iUk = iNew;
+    *jUk = jNew;
+    *lUk = lNew;
 }
 
-int Check(int *i_Uk, int *j_Uk, int *l_Uk ){
+int Check(int *iUk, int *jUk, int *lUk ){
 
     const int x = -10, y = -10, x2 = -20, y2 = -20, r = 10;
 
-    int i = *i_Uk, j = *j_Uk, l = *l_Uk;
+    int i = *iUk, j = *jUk, l = *lUk;
 
     if(( (i - x) * (i - x) + (j - y) * (j - y) <= r * r) && ( (i - x2) * (i - x2) + (j - y2) * (j - y2) <= r * r))
         return 1;
@@ -57,11 +57,11 @@ int i, j, l;
     i = i0;
     j = j0;
     l = l0;
-    int *i_Uk = &i, *j_Uk = &j, *l_Uk = &l;
+    int *iUk = &i, *jUk = &j, *lUk = &l;
     int k = 0;
 
     while(k <= 50){
-        if(Check(i_Uk, j_Uk, l_Uk)){
+        if(Check(iUk, jUk, lUk)){
              printf ("попадание\n");
              printf ("координа абсцисс %d\n", i);
              printf ("координа ординат %d\n", j);
@@ -69,7 +69,7 @@ int i, j, l;
              printf ("число интераций %d\n", k);
              return 0;
         }
-        Move(k, i_Uk, j_Uk, l_Uk);
+        Move(k, iUk, jUk, lUk);
         ++k;
     }
     
