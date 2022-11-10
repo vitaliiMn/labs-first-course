@@ -20,9 +20,9 @@ void Move (int k, int *i_Uk, int *j_Uk, int *l_Uk){
     int iNew, jNew, lNew;
     int v1, v2, v3;
 
-    int i  =*i_Uk, j = *j_Uk, l = *l_Uk;
+    int i  = *i_Uk, j = *j_Uk, l = *l_Uk;
 
-    iNew=(i * i * i - j * j * j + l * l * l - k) % 20;
+    iNew = (i * i * i - j * j * j + l * l * l - k) % 20;
     v1= i * j * l -k;
     v2= i * i * l -k;
     v3= j * l * l -k;
@@ -41,9 +41,9 @@ void Move (int k, int *i_Uk, int *j_Uk, int *l_Uk){
 
 int Check(int *i_Uk, int *j_Uk, int *l_Uk ){
 
-    const int x=-10, y=-10, x2=-20, y2=-20, r=10;
+    const int x = -10, y = -10, x2 = -20, y2 = -20, r = 10;
 
-    int i=*i_Uk, j=*j_Uk, l=*l_Uk;
+    int i = *i_Uk, j = *j_Uk, l = *l_Uk;
 
     if(( (i - x) * (i - x) + (j - y) * (j - y) <= r * r) && ( (i - x2) * (i - x2) + (j - y2) * (j - y2) <= r * r))
         return 1;
@@ -54,10 +54,10 @@ int Check(int *i_Uk, int *j_Uk, int *l_Uk ){
 int main (){
 const int i0 = 6, j0 = 27, l0 = -15;
 int i, j, l;
-    i= i0;
-    j= j0;
-    l= l0;
-    int *i_Uk=&i, *j_Uk=&j, *l_Uk=&l;
+    i = i0;
+    j = j0;
+    l = l0;
+    int *i_Uk = &i, *j_Uk = &j, *l_Uk = &l;
     int k = 0;
 
     while(k <= 50){
@@ -73,7 +73,7 @@ int i, j, l;
         ++k;
     }
     
-    printf ("число интераций %d\n", k-1);
+    printf ("число интераций %d\n", k - 1);
     printf ("промах\n");
     printf ("координа абсцисс %d\n", i);
     printf ("координа ординат %d\n", j);
