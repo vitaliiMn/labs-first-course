@@ -1,7 +1,7 @@
 //18 вариант
 #include <stdio.h>
 
-long long Pow (int k) {
+long long Pow(int k){
 
     long long s = 1;
     int i;
@@ -15,7 +15,7 @@ long long Pow (int k) {
     return s;
 }
 
-int Size (long long s) {
+int Size(long long s){
 
     int k = 0;
 
