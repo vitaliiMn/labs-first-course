@@ -6,7 +6,7 @@ int Check(char a){
     char q;
 
     for (i = 0; i <= 9; ++i) {
-        q = i+'0';
+        q = i + '0';
         if (a == q)
             return i;   
     }
@@ -28,7 +28,7 @@ double Pow(int k){
     return s;
 }
 
-void Fahrenheit (double s) {
+void Fahrenheit(double s) {
     s= s * 9 / 5 + 32;
 
     printf ("%g", s);
