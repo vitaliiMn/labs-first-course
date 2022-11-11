@@ -5,11 +5,9 @@ long long Pow(int k){
     long long s = 1;
     int i;
 
-    for (i = 0; i < k; ++i) {
+    for (i = 0; i < k; ++i) 
         s *= 10;
-
-    }
-
+        
     return s;
 }
 
@@ -19,7 +17,6 @@ int Size(long long s){
     while(s != 0){
         s = s / 10;
         ++k;
-
     }
 
     return k;
@@ -31,7 +28,7 @@ int main() {
 
     while (1) {
         scanf ("%lld", &s);
-        k = Size (s);
+        k = Size(s);
 
         if( k>= 3){
             b = s / Pow(k - 2);
@@ -50,7 +47,7 @@ int main() {
 
         } else
             printf("%lld\n", s);
-
+            
     }
     
     return 0;
