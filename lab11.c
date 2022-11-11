@@ -1,40 +1,34 @@
 // 18 вариант
 #include <stdio.h>
 
-int Check (char a){
-    
+int Check(char a){
     int i;
     char q;
 
-    for(i = 0; i <= 9; ++i){
+    for (i = 0; i <= 9; ++i) {
         q = i+'0';
-        if (a == q){
-            return i;
-        }
+        if (a == q)
+            return i;   
     }
 
-    if(a == '.'){
+    if (a == '.') 
         return 10;
-    }
-
+ 
     return -1;
 }
 
-double Pow (int k){
-    
+double Pow(int k){
     int i;
-
     double s = 1;
 
-    for (i = 0; i < k; ++i){
+    for (i = 0; i < k; ++i) {
         s = s / 10;
     }
 
     return s;
 }
 
-void Fahrenheit (double s){
-
+void Fahrenheit (double s) {
     s= s * 9 / 5 + 32;
 
     printf ("%g", s);
@@ -43,72 +37,110 @@ void Fahrenheit (double s){
 }
 
 int main() {
-    short int bool1 = 0, bool2 =0, printCheck =0, arithmeticSign = 0;
-    char a, e = ' ';
-    int symbol, k=0;
+    short int bool1 = 0, bool2 = 0, printCheck = 0, arithmeticSign = 0, zerro = 0;
+    char a, previous = ' ';
+    int i, symbol, k = 0, k0 = 0;
     double s = 0;
 
-    while ( 1 ){
-
+    while (1) {
     a = getchar ();
+   
+    if (zerro) { 
+        if (a != 'C') {
+            if (a != '.') {
+        if (arithmeticSign) {
+            putchar ('-'); 
+        }
+
+            putchar ('0');
+
+            if (a != EOF) {
+            putchar (a);
+            previous = a;
+            if (previous == '\n')
+            previous = ' ';
+            }
+
+            arithmeticSign = printCheck = bool1 = bool2 = s = k = 0;
+            } else {
+                bool1 = 1;
+                bool2 = 1;
+                previous = a;
+            }
+        } else {
+            if (arithmeticSign) {
+                putchar ('-');
+                putchar ('0');
+                putchar ('C');
+
+                arithmeticSign = printCheck = bool1 = bool2 = s = k = 0;
+                previous = a;
+            } else
+            printCheck = 1;
+
+        }
+       zerro = 0;
+
+        continue;
+    } 
 
     if (a == EOF) {
-        if (printCheck == 1){
-            if (arithmeticSign == 1){
-            Fahrenheit (s*(-1));
+        if (printCheck) {
+            if (arithmeticSign) {
+            Fahrenheit (-s);
             } else
             Fahrenheit (s);
 
-        } else{
-            if (arithmeticSign == 0){
+        } else {
+            if (!arithmeticSign) {
             printf ("%g", s);
             } else {
-            printf ("%g", s*(-1));
+            printf ("%g", -s);
             }
                 
-            putchar('C');
+            putchar ('C');
         }                
     break;
     }
 
-        if (a == '-' && e == ' '){
-            if(arithmeticSign == 0){
+        if (a == '-' && previous == ' ') {
+            if (!arithmeticSign) {
             arithmeticSign = 1;
             continue;
-            } else{
-                e = a;
-            }
+            } else 
+                previous = a;
+            
         }
 
-        if (printCheck == 1 && (a == ' '||a == '\n')){
+        if (printCheck && (a == ' ' || a == '\n')) {
 
-            if (arithmeticSign == 1){
-            Fahrenheit (s*(-1));
+            if (arithmeticSign) {
+            Fahrenheit (-s);
             } else
             Fahrenheit (s);
 
             putchar (a);
 
-            e = a;
-            if (e == '\n'){
-                e = ' ';
+            previous = a;
+            if (previous == '\n') {
+                previous = ' ';
             }
 
             arithmeticSign = printCheck = bool1 = bool2 = s = k = 0;
             continue;
         } 
 
-        if (printCheck == 1){
-                if (arithmeticSign == 0){
+        if (printCheck) {
+                if (!arithmeticSign) {
                 printf ("%g", s);
                 } else {
-                printf ("%g", s*(-1));
+                printf ("%g", -s);
                 }
                 
-                putchar('C');
-                putchar(a);
+                putchar ('C');
+                putchar (a);
 
-                e=a;
+                previous = a;
 
                 printCheck = arithmeticSign = bool1 = bool2 = s = k = 0;
                 continue;
@@ -116,37 +148,50 @@ int main() {
               
     symbol = Check (a);
 
-    if (symbol == -1){
-
-        if (bool1 == 0){
-            if(arithmeticSign ==1)
-            putchar('-');
-
+    if (symbol == -1) {
+        if (!bool1) {
+            if (arithmeticSign) {
+            putchar ('-');
             arithmeticSign = 0;
+            }
 
             putchar (a);
-            e = a;
-              if (e == '\n'){
-                e = ' ';
+            previous = a;
+              if (previous == '\n') {
+                 previous = ' ';
             }
+
             continue;
         } 
 
-        if (bool1 == 1){
-            if (a == 'C'){
-              printCheck = 1;
+        if (bool1) {
 
+            if (a == 'C' && k0 == 0 && previous != '.') {
+                   printCheck = 1;
+                                 
             } else {
-                if(arithmeticSign == 0){
+
+                if (!arithmeticSign) {
                 printf ("%g", s);
-                } else{
-                printf ("%g", s*(-1));
+                } else {
+                printf ("%g", -s);
+                }       
+                if(previous =='.')
+                putchar ('.');
+                if (k0 != 0) {
+                    if (bool2) {
+                        putchar ('.');
+                    }
+                for (i = 0; i < k0; ++i)
+                putchar ('0');
+                k0 = 0;
+
                 }
-                putchar(a);
-                e = a;
-                  if (e == '\n'){
-                e = ' ';
-            }
+                putchar (a);
+                previous = a;
+                if ( previous == '\n') {
+                previous = ' ';
+                }
                 arithmeticSign = 0;
                 bool1 = bool2 = s = k = 0;
             }
@@ -154,68 +199,76 @@ int main() {
         
     } else {
 
-        if (e == ' ')
+        if (previous == ' ' && symbol != 10)
         bool1 = 1;
 
-        if (bool1 == 0){
-            if(arithmeticSign == 1){
-                putchar('-');
+        if (symbol == 0 && s == 0 && previous == ' ') {
+            zerro = 1;
+            previous = '0';
+            continue;
+            }
+
+        if (!bool1) {
+            if(arithmeticSign) {
+                putchar ('-');
                 arithmeticSign = 0;
             }
-            putchar(a);
+            putchar (a);
         } 
 
-        if (bool1 == 1){
-
-        if (symbol!= 10){
-
-            if (bool2 == 0){
-                
+        if (bool1) {
+        if (symbol != 10) {
+            if (bool2 == 0) {
             s *= 10;
             s += symbol;
             
-            } 
-            
-            else {
+            } else {
 
-                 ++k;
-            s += symbol* Pow (k);
-
+            if (a == '0') {
+                ++k0;
+            } else  
+                k0 = 0;     
+                ++k;
+            s += symbol * Pow (k);
             }
-
-        } 
-        
-        else {
-            if (bool2 == 1){
-                if(arithmeticSign == 1){
-                putchar('-');
+        }  else {
+                if (bool2) {
+                if (arithmeticSign == 1) {
+                putchar ('-');
                 arithmeticSign = 0;
                 }
+
                 printf ("%g", s);
-                putchar(a);
+
+                          
+                if(previous == '.')
+                putchar ('.');
+                
+                if (k0 != 0) {
+                    putchar ('.');
+                    for (i = 0; i < k0; ++i) {
+                    putchar ('0');
+                    }
+                    k0 = 0;
+                }
+
+               putchar (a);
 
                 bool1 = bool2 = s = k = 0;
-                e=a;
-                  if (e == '\n'){
-                    e = ' ';
+                 previous = a;
+                  if (previous == '\n') {
+                    previous = ' ';
                   }
                 continue;
             }
-
             bool2 = 1;
-
-            ++k;
-            s += symbol * Pow (k);
-
         }
-
         }
     }
-    
-    e = a;
 
-    if (e == '\n'){
-      e = ' ';
+     previous = a;
+    if (previous == '\n') {
+        previous = ' ';
         }
     }
     return 0;
