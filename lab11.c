@@ -83,9 +83,8 @@ int main(){
                 printf ("%g", -s);            
             putchar ('C');
         }                
-    break;
+        break;
     }
-    
         if (a == '-' && previous == ' ') {
             if (!arithmeticSign) {
                 arithmeticSign = 1;
