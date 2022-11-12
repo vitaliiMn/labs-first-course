@@ -30,7 +30,7 @@ int main() {
         scanf ("%lld", &s);
         k = Size(s);
 
-        if( k>= 3){
+        if(k>= 3){
             b = s / Pow(k - 2);
             b = b % 10;
 
@@ -46,8 +46,7 @@ int main() {
             printf("%lld\n", s);
 
         } else
-            printf("%lld\n", s);
-            
+            printf("%lld\n", s);    
     }
     
     return 0;
