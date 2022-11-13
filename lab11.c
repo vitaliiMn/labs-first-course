@@ -203,7 +203,7 @@ int main() {
                         } else  
                             k0 = 0;     
                         ++k;
-                        s += symbol * Pow (k);
+                        s += symbol * Pow(k);
                     }
                 } else {
                     if (bool2) {
