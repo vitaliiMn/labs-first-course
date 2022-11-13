@@ -21,25 +21,22 @@ int Size(long long s) {
 int main() {
     long long s, a, b;
     int k;
+    scanf("%lld", &s);
+    k = Size(s);
+    if(k >= 3){
+        b = s / Pow(k - 2);
+        b = b % 10;
+            
+        s -= b * Pow(k - 2);
+            
+        a = s / 100;
+        a = a % 10;
+            
+        s += (b - a) * 100;
+        s += a * Pow(k - 2);
 
-    while (1) {
-        scanf("%lld", &s);
-        k = Size(s);
-        if(k >= 3){
-            b = s / Pow(k - 2);
-            b = b % 10;
-            
-            s -= b * Pow(k - 2);
-            
-            a = s / 100;
-            a = a % 10;
-            
-            s += (b - a) * 100;
-            s += a * Pow(k - 2);
-
-            printf("%lld\n", s);
-        } else
-            printf("%lld\n", s);    
-    }
+        printf("%lld\n", s);
+    } else
+        printf("%lld\n", s);    
     return 0;
 }
