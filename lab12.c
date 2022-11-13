@@ -25,7 +25,7 @@ int main() {
     while (1) {
         scanf("%lld", &s);
         k = Size(s);
-        if(k>= 3){
+        if(k >= 3){
             b = s / Pow(k - 2);
             b = b % 10;
             
