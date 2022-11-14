@@ -1,7 +1,7 @@
 //18 вариант
 #include <stdio.h>
 
-long long Pow(int k) {
+long long Pow(short int k) {
     long long s = 1;
     int i;
     for (i = 0; i < k; ++i) 
@@ -9,34 +9,46 @@ long long Pow(int k) {
     return s;
 }
 
-int Size(long long s) {
-    int k = 0;
-    while (s != 0) {
-        s = s / 10;
-        ++k;
-    }
-    return k;
+void ResultСalculate(long long sum, short int k) {
+    long long a, b;
+    if(k >= 3){
+        b = sum / Pow(k - 2);
+        b = b % 10;    
+        sum -= b * Pow(k - 2);     
+        a = sum / 100;
+        a = a % 10;     
+        sum += (b - a) * 100;
+        sum += a * Pow(k - 2);
+        printf("%lld", sum);
+    } else
+        printf("%lld", sum);    
 }
 
 int main() {
-    long long s, a, b;
-    int k;
-    scanf("%lld", &s);
-    k = Size(s);
-    if(k >= 3){
-        b = s / Pow(k - 2);
-        b = b % 10;
-            
-        s -= b * Pow(k - 2);
-            
-        a = s / 100;
-        a = a % 10;
-            
-        s += (b - a) * 100;
-        s += a * Pow(k - 2);
-
-        printf("%lld\n", s);
-    } else
-        printf("%lld\n", s);    
+    short int a, k, bool1 = 0;
+    long long sum = 0;
+    while (1) {
+        a = getchar(); 
+        if (a == '\n' || a == ' ' || a == EOF ) {
+            if (bool1){
+                ResultСalculate(sum, k);
+                bool1 = 0;
+            }
+            sum = 0;
+            k = 0;
+            if (a == '\n')
+                putchar('\n');
+            if (a == ' ')
+                putchar(' ');
+            if (a == EOF)
+                break;      
+            continue;  
+        } else {
+            bool1 = 1;
+            ++k;
+            sum *= 10;
+            sum += (a - 48);
+        }
+    }
     return 0;
 }
