@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int Max (int v1, int v2, int v3){
+int Max(int v1, int v2, int v3){
     
     int max = v1;
     
@@ -13,7 +13,7 @@ int Max (int v1, int v2, int v3){
     return max;
 }
 
-int Min (int v1, int v2, int v3){
+int Min(int v1, int v2, int v3){
     int min = v1;
     
     if (v2 < min)
@@ -25,7 +25,7 @@ int Min (int v1, int v2, int v3){
     return min;
 }
 
-void Move (int k, int *iUk, int *jUk, int *lUk){
+void Move(int k, int *iUk, int *jUk, int *lUk){
     int iNew, jNew, lNew;
     int v1, v2, v3;
 
@@ -56,7 +56,7 @@ int Check(int *iUk, int *jUk, int *lUk ){
     return 0;
 }
 
-int main (){
+int main () {
 const int i0 = 6, j0 = 27, l0 = -15;
 int i, j, l;
     i = i0;
