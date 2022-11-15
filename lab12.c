@@ -11,7 +11,7 @@ long long Pow(short int k) {
 
 void ResultСalculate(long long sum, short int k) {
     long long a, b;
-    if(k >= 3){
+    if (k >= 3) {
         b = sum / Pow(k - 2);
         b = b % 10;    
         sum -= b * Pow(k - 2);     
@@ -29,8 +29,8 @@ int main() {
     long long sum = 0;
     while (1) {
         a = getchar(); 
-        if (a == '\n' || a == ' ' || a == EOF ) {
-            if (bool1){
+        if (a == '\n' || a == ' ' || a == EOF) {
+            if (bool1) {
                 ResultСalculate(sum, k);
                 bool1 = 0;
             }
