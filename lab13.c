@@ -1,4 +1,4 @@
-//18 вариант
+//17 вариант
 #include <stdio.h>
 
 int Check(char a) {
@@ -29,18 +29,15 @@ int main() {
                 break;
             continue;       
         }
-
         if (a == ' ' || a == ',' || a == '\t' || a == '\v' || a == '\n' || a == EOF) {   
             if (bool1) {
                 bool1 = 0;
                 if (a == ' ' || a == ',' || a == '\n') {
-
                     if (start) 
                         start = 0;
                     else 
                         if ((first & second) == 0)  
                             final = 1;       
-
                     second = first;
                     first = 0;   
                 } else {     
