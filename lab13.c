@@ -1,7 +1,7 @@
 //17 вариант
 #include <stdio.h>
 
-#define alphabetVowel (1u << ('a' - 'a') | 1u << ('e' - 'a') | 1u << ('i' - 'a') | 1u << ('o' - 'a') | 1u << ('u' - 'a') | 1u << ('y' - 'a'))
+#define alphabetVowels (1u << ('a' - 'a') | 1u << ('e' - 'a') | 1u << ('i' - 'a') | 1u << ('o' - 'a') | 1u << ('u' - 'a') | 1u << ('y' - 'a'))
 
 int main() {
     short int start = 1, final = 0, bool1 = 0;
@@ -41,7 +41,7 @@ int main() {
         } else {
             bool1 = 1;
             s = 1u << (a - 'a');
-            if((s & alphabetVowel) && ((s & first) == 0))
+            if((s & alphabetVowels) && ((s & first) == 0))
                 first = first | s; 
         }
     }
