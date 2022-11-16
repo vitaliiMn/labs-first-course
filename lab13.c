@@ -1,22 +1,7 @@
 //17 вариант
 #include <stdio.h>
 
-int Check(char a) {
-    int e = 0;
-    if (a == 'A' || a == 'a')
-        e = 1;
-    if (a == 'E' || a == 'e')
-        e = 2;
-    if (a == 'I' || a == 'i')
-        e = 4;
-    if (a == 'O' || a == 'o')
-        e = 8;
-    if (a == 'U' || a == 'u')
-        e = 16;
-    if (a == 'Y' || a == 'y')
-        e = 32;
-    return e;
-}
+#define alphabetVowel (1u << ('a' - 'a') | 1u << ('e' - 'a') | 1u << ('i' - 'a') | 1u << ('o' - 'a') | 1u << ('u' - 'a') | 1u << ('y' - 'a'))
 
 int main() {
     short int start = 1, final = 0, bool1 = 0;
@@ -29,6 +14,7 @@ int main() {
                 break;
             continue;       
         }
+        
         if (a == ' ' || a == ',' || a == '\t' || a == '\v' || a == '\n' || a == EOF) {   
             if (bool1) {
                 bool1 = 0;
@@ -54,9 +40,9 @@ int main() {
                     break;  
         } else {
             bool1 = 1;
-            s = Check(a);
-            if ((s & first) == 0) 
-                first += s; 
+            s = 1u << (a - 'a');
+            if((s & alphabetVowel) && ((s & first) == 0))
+                first = first | s; 
         }
     }
     if (final) 
