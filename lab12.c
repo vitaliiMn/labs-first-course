@@ -47,7 +47,7 @@ int main() {
             bool1 = 1;
             ++k;
             sum *= 10;
-            sum += (a - 48);
+            sum += (a - '0');
         }
     }
     return 0;
