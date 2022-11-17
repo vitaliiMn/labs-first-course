@@ -1,7 +1,7 @@
 //20 вариант
 #include <stdio.h>
 
-#define maxn 100
+#define maxn 7
 
 int main() {
     int mass[maxn][maxn];
@@ -24,7 +24,7 @@ int main() {
             if (mass[j][i] == min)
                 mass[j][i] = sum;
     }
-    for (i = 0; i < n; ++i){
+    for (i = 0; i < n; ++i) {
         for (j = 0; j < n; ++j)
             printf("%d ", mass[i][j]);  
         putchar('\n');
