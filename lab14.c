@@ -7,7 +7,7 @@ int main() {
     int mass[maxn][maxn];
     int i, l, n;
 
-    scanf("%i",&n);
+    scanf("%i", &n);
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             scanf("%d", &mass[i][j]);     
