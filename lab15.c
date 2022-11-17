@@ -24,7 +24,7 @@ int main() {
         sum = 0;
         for (j = 0; j < n; ++j) 
             if (min == mass[j][i]) {
-                if (!columnCheck){
+                if (!columnCheck) {
                     for (l = 0; l < n; ++l)
                         sum += mass[l][i];
                     mass[j][i] = sum;    
