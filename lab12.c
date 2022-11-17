@@ -25,7 +25,7 @@ void ResultСalculate(long long sum, short int k) {
 }
 
 int main() {
-    short int a, k, bool1 = 0;
+    short int a, k = 0, bool1 = 0;
     long long sum = 0;
     while (1) {
         a = getchar(); 
