@@ -29,7 +29,7 @@ int main() {
     long long sum = 0;
     while (1) {
         a = getchar(); 
-        if (a == '-'){
+        if (a == '-') {
             putchar('-');
             bool1 = 0;
             continue;
