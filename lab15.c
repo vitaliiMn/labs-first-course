@@ -4,7 +4,7 @@
 #define MAX_N 8
 
 int main() {
-    int mass[maxn][maxn];
+    int mass[MAX_N][MAX_N];
     int i, j, n, min, sum;
 
     scanf("%i", &n);
