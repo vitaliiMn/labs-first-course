@@ -29,6 +29,11 @@ int main() {
     long long sum = 0;
     while (1) {
         a = getchar(); 
+        if (a == '-'){
+            putchar('-');
+            bool1 = 0;
+            continue;
+        }
         if (a == '\n' || a == ' ' || a == EOF) {
             if (bool1) {
                 ResultСalculate(sum, k);
