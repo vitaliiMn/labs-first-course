@@ -1,7 +1,7 @@
 //20 вариант
 #include <stdio.h>
 
-#define MAX_N 7
+#define MAX_N 8
 
 int main() {
     int mass[maxn][maxn];
