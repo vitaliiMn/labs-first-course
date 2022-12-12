@@ -6,8 +6,6 @@
 #define RANGE_END 1.0l
 #define STEP 0.005l
 
-const long double ln3 = logl(3);
-
 long double MachineEps() {
     long double e = 1.0l;
     while (1.0l + e * 0.5l > 1.0l) {
@@ -25,6 +23,7 @@ long double F(long double x){
 }
 
 int main() {
+    const long double ln3 = logl(3);
     long double eps = MachineEps();
     for (int i = 0; i < 76; i++) {
         printf("-");
