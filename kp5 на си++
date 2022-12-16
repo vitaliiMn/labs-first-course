@@ -28,12 +28,9 @@ void Printf(int matrix[9][9]) {
 
 void Transposition(int matrix[9][9]) {
 	int i, j;
-	for (i = 0; i < 8; ++i) {
-		for (j = i + 1; j < 9; ++j) {
+	for (i = 0; i < 8; ++i) 
+		for (j = i + 1; j < 9; ++j) 
 			swap(matrix[i][j], matrix[j][i]);
-
-		}
-	}
 }
 
 void Swap_Colums_Small(int p, int a, int b, int matrix[9][9]) {
@@ -46,10 +43,8 @@ void Swap_Colums_Small(int p, int a, int b, int matrix[9][9]) {
 	b %= 3;
 	a += p * 3;
 	b += p * 3;
-
-	for (i = 0; i < 9; ++i) {
+	for (i = 0; i < 9; ++i) 
 		swap(matrix[i][a], matrix[i][b]);
-	}
 }
 
 void Swap_Rows_Small(int p, int a, int b, int matrix[9][9]) {
@@ -63,10 +58,8 @@ void Swap_Rows_Small(int p, int a, int b, int matrix[9][9]) {
 	b %= 3;
 	a += p * 3;
 	b += p * 3;
-
-	for (i = 0; i < 9; ++i) {
+	for (i = 0; i < 9; ++i) 
 		swap(matrix[i][a], matrix[i][b]);
-	}
 	Transposition(matrix);
 }
 
@@ -78,10 +71,8 @@ void Swap_Colums_Area(int a, int b, int matrix[9][9]) {
 	a %= 3;
 	b %= 3;
 	for (i = 0; i < 9; ++i) {
-		for (j = 0; j < 3; ++j) {
-			swap(matrix[i][j + a * 3], matrix[i][j + b * 3]);
-		}
-	}
+		for (j = 0; j < 3; ++j) 
+			swap(matrix[i][j + a * 3], matrix[i][j + b * 3]);	
 }
 
 void Swap_Rows_Area(int a, int b, int matrix[9][9]) {
@@ -93,10 +84,8 @@ void Swap_Rows_Area(int a, int b, int matrix[9][9]) {
 	a %= 3;
 	b %= 3;
 	for (i = 0; i < 9; ++i) {
-		for (j = 0; j < 3; ++j) {
-			swap(matrix[i][j + a * 3], matrix[i][j + b * 3]);
-		}
-	}
+		for (j = 0; j < 3; ++j) 
+			swap(matrix[i][j + a * 3], matrix[i][j + b * 3]);	
 	Transposition(matrix);
 }
 
@@ -123,15 +112,15 @@ string Calc(string s, int matrix[9][9], int matrix2[9][9]) {
 	int i, j, e, x, y, k, poz1, poz2;
 	string z;
 	bool f1;
-
+	
 	for (i = 0; i < 9; ++i)
 		for (j = 0; j < 9; ++j)
 			matrix2[i][j] = matrix[i][j];
-
+			
 	for (i = 0; i < 9; ++i)
 		for (j = 0; j < 9; ++j)
 			matrix2[i][j] = matrix[i][j];
-
+			
 	for (i = 0; i < s.size() / 3; ++i)
 		matrix2[s[i * 3] - '0'][s[i * 3 + 1] - '0'] = s[i * 3 + 2] - '0';
 
