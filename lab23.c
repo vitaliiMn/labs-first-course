@@ -57,11 +57,11 @@ int main() {
 
     char str[10];
 
-    while(scanf("%s",&str) == 1) {
+    while(scanf("%s",str) == 1) {
 
         long long u, v, wal ;
-       
-        if(str == "insert") {
+
+        if(strcmp(str, "insert") == 0) {
             scanf("%lld %lld %lld", &u, &v, &wal);
             --u;
             --v;
@@ -110,7 +110,7 @@ int main() {
             }
         }
 
-        if(str == "erase") {
+        if(strcmp(str, "erase") == 0) {
             scanf("%lld %lld %lld", &u, &v, &wal);
             --u;
             --v;
@@ -135,7 +135,7 @@ int main() {
             }
         }
 
-        if(h == "show") {
+        if(strcmp(str, "show") == 0) {
             printf("вывод\n");
             for(long long i = 1;i < 100; ++i ) {
                 if(mass[i].prew != -1)
@@ -144,10 +144,9 @@ int main() {
             printf("конец вывода\n");
         }
 
-        if(h == 'check') {
+        if(strcmp(str, "check") == 0) {
             printf("%lld\n", Check(mass) + 1);
         }
-
     }
 
     return 0;
