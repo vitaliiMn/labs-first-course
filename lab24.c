@@ -142,6 +142,10 @@ void EraseNull(struct vec2d *mass) {
                 mass[v].prew = -1;
                 v = u;
             }
+            if(mass[u].prew == u && (mass[u].wal == '*' || mass[u].wal == '/')) {
+                mass[u].next1 = -1;
+                mass[u].next2 = -1;
+            }
             mass[u].wal = 't';
         }
     }
