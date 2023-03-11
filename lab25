@@ -1,0 +1,31 @@
+// main.c
+#include <stdio.h>
+#include "functions.cpp"
+
+int main() {
+    Hello();
+    printf("Second\n");
+    return 0;
+}
+
+
+// hello.c
+#include <stdio.h>
+#include "functions.cpp"
+
+void Hello() {
+    printf("Hello\n");
+}
+
+
+// functions.c
+void Hello();
+
+
+// makelab.txt
+all:
+	gcc main.c hello.c functions.c
+
+
+// выполнение make
+make -f makelab.txt
