@@ -1,0 +1,120 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Person{
+    char surname[20];
+    char initials[20];
+    char gender;
+    int school_number;
+    char medal;
+    int math;
+    int russian;
+    int inf;
+    char essay;
+};
+
+const int N = 100;
+
+int To_int(char s[255], int n) {
+    int i;
+    int x = 0;
+    int pow = 1;
+    for(i = n - 1; i >= 0; --i) {
+        x += (s[i] - '0') * pow;
+        pow *= 10;
+    }
+    return x;
+}
+
+void PrintPerson(struct Person array[], int n) {
+    for(int i = 0; i < n; ++i) {
+        printf("%s %s %c %d %d\n", array[i].surname, array[i].initials, array[i].gender, array[i].school_number, array[i].math);
+    }
+}
+
+void GetPerson(struct Person array[], int n) {
+    for(int i = 0; i < n; ++i) {
+        if(array[i].medal == '1' && array[i].math == 2) {
+            printf("%s %s \n", array[i].surname, array[i].initials);
+        }     
+    }
+}
+
+int main() {
+    FILE *file = fopen("data.csv", "r");
+    struct Person array[N];
+    char str[255];
+    int number_person = 0;
+    if(file) {
+        while (fgets(str, 255, file)) {
+            int j;
+            int i = 0;
+            int kol = 0;           
+            char person[255];
+            while(str[i] != ' ') {  // фамилия
+                person[kol] = str[i];
+                ++i;
+                ++kol;
+            }
+            ++i;          
+            for(j = 0; j < kol; ++j) {
+                array[number_person].surname[j] = person[j];
+            }
+            kol = 0;
+            while(str[i] != ' ') { // инициалы
+                person[kol] = str[i];
+                ++i;
+                ++kol;
+            }         
+            ++i;     
+            for(j = 0; j < kol; ++j) {
+                array[number_person].initials[j] = person[j];
+            }
+            kol = 0;
+            array[number_person].gender = str[i]; // пол
+            i += 2;
+            while(str[i] != ' ') { // номер школы
+                person[kol] = str[i];
+                ++i;
+                ++kol;
+            }         
+            ++i; 
+            array[number_person].school_number = To_int(person, kol);        
+            kol = 0;
+            array[number_person].medal = str[i]; // медаль
+            i += 2;
+            while(str[i] != ' ') { // баллы математика
+                person[kol] = str[i];
+                ++i;
+                ++kol;
+            }         
+            ++i;
+            array[number_person].math = To_int(person, kol);      
+            kol = 0;
+            while(str[i] != ' ') { // баллы русский
+                person[kol] = str[i];
+                ++i;
+                ++kol;
+            }         
+            ++i;
+            array[number_person].russian = To_int(person, kol);      
+            kol = 0;
+            while(str[i] != ' ') { // баллы информатика
+                person[kol] = str[i];
+                ++i;
+                ++kol;
+            }         
+            ++i;
+            array[number_person].inf = To_int(person, kol);      
+            kol = 0;
+            i += 2;
+            array[number_person].essay = str[i];   // сочинение  
+            ++number_person;
+        }
+        fclose(file);
+    }
+    PrintPerson(array, number_person);
+    GetPerson(array, number_person);
+    return 0;
+}
