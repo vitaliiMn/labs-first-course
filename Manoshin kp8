@@ -1,0 +1,176 @@
+// беззнаковое целое, кольцевой однонаправленный, выполнить циклический сдвиг элементов списка на один элемент вперед
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+#define N 100
+
+struct element{
+    unsigned int wal;
+    int next;
+};
+
+struct list{
+    int freepos;
+    int first;
+    int last;
+    struct element mass[N];
+    int n;
+};
+
+void CreateList(struct list *ls) {
+    int i;
+    for(i = 0; i < N; ++i) {
+        ls->mass[i].next = -1;
+    }
+    ls->freepos = 0;
+    ls->first = -1;
+    ls->last = -1;
+    ls->n = 0;
+}
+
+void Insert(struct list *ls, int k, unsigned int x) {
+    if(k > ls->n + 1 || k < 1) {
+        printf("miss");
+        return;
+    }
+    if(ls->n == 0) {
+        ls->first = 0;
+        ls->last = 0;
+        ls->mass[0].wal = x;
+        ls->mass[0].next = 0;
+        ls->freepos = 1;
+        ++ls->n;
+        return;
+    }
+    if(k == 1) {
+        while(ls->mass[ls->freepos].next != -1) {
+            ++ls->freepos;
+        }
+        ls->mass[ls->freepos].wal = x;
+        ls->mass[ls->freepos].next = ls->first;
+        ls->mass[ls->last].next = ls->freepos;
+        ls->first = ls->freepos;
+        ++ls->freepos;
+        ++ls->n;
+        return;
+    } 
+    if(k == ls->n + 1) {
+         while(ls->mass[ls->freepos].next != -1) {
+            ++ls->freepos;
+        }
+        ls->mass[ls->freepos].wal = x;
+        ls->mass[ls->freepos].next = ls->first;
+        ls->mass[ls->last].next = ls->freepos;
+        ls->last = ls->freepos;
+        ++ls->freepos;
+        ++ls->n;
+        return;
+    }
+    int i, next = ls->last;
+    for(i = 0; i < k - 1; ++i) {
+        next = ls->mass[next].next;
+    }
+    int l = next, r = ls->mass[next].next;     
+    while(ls->mass[ls->freepos].next != -1) {
+        ++ls->freepos;
+    }
+    ls->mass[ls->freepos].wal = x;
+    ls->mass[ls->freepos].next = r;
+    ls->mass[l].next = ls->freepos;
+    ++ls->freepos;
+    ++ls->n;
+}
+
+void Erase(struct list *ls, int k) {
+    if(k > ls->n || k < 1) {
+        printf("miss");
+        return;
+    }
+    if(ls->n == 0) {
+         printf("error, is empty\n");
+        return;
+    }
+    if(ls->n == 1) {
+        ls->mass[ls->first].next = -1;
+        ls->freepos = 0;
+        ls->first = -1;
+        ls->last = -1;
+        ls->n = 0;
+        return;
+    }
+    int i;
+    int next = ls->last;
+    for(i = 0; i < k - 1; ++i) {
+        next = ls->mass[next].next;
+    }
+    int l = next, midle = ls->mass[l].next, r = ls->mass[midle].next;
+    if(ls->first == midle) {
+        ls->first = r;
+    }
+    if(ls->last == midle) {
+        ls->last = l;
+    }
+    ls->mass[midle].next = -1;
+    ls->mass[l].next = r;
+    --ls->n;
+}
+
+void Print(struct list *ls) {
+    if(ls->n == 0) {
+        printf("is empty\n");
+        return;
+    }
+    int i;
+    int next = ls->first;
+    for(i = 0; i < ls->n + 1; ++i) {
+        printf("%d ", ls->mass[next].wal);
+        next = ls->mass[next].next;
+    }
+    printf("\n");
+}
+
+int Len(struct list *ls) {
+    return ls->n;
+}
+
+void Move(struct list *ls) {
+    if(ls->n == 0) {
+        return;
+    }
+    ls->first = ls->mass[ls->first].next;
+    ls->last = ls->mass[ls->last].next;
+}
+
+int main() {
+    struct list ls;
+    CreateList(&ls);
+    int i, q;
+    scanf("%d", &q);
+    for(i = 0; i < q; ++i) {
+        int type;
+        scanf("%d", &type);
+        if(type == 1) { // вставить
+            int k;
+            unsigned int x;
+            scanf("%d %d", &k, &x); // позиция, элемент
+            Insert(&ls, k, x);
+        }
+        if(type == 2) { // удалить
+            int k;
+            scanf("%d", &k); // позиция
+            Erase(&ls, k);
+        }
+        if(type == 3) { // печатает весь список и циклически переходит на первый элемент, печатает его
+            Print(&ls);
+        }
+        if(type == 4) { // длина списка
+            int len = Len(&ls);
+            printf("%d\n", len);
+        }
+        if(type == 5) { // циклический сдвиг вправо
+            Move(&ls);
+        }
+    }
+    return 0;
+}
