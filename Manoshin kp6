@@ -16,7 +16,7 @@ struct Person{
     char essay;
 };
 
-const int N = 100;
+#define N 100
 
 int To_int(char s[255], int n) {
     int i;
