@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+#define N 100
+
+void swap(int *a, int *b) {
+    int t;
+    t = *a, *a = *b, *b = t;
+}
+
+void Heapify(int *mass, int id, int k) {
+    if(id >= k) {
+        return;
+    }
+    if(id * 2 + 2 >= k) {
+        if(id * 2 + 1 < k) {
+            if(mass[id] < mass[id * 2 + 1]) {
+                swap(&mass[id], &mass[id * 2 + 1]);
+            }
+        }
+        return;
+    }
+    if(mass[id] < mass[id * 2 + 1] || mass[id] < mass[id * 2 + 2]) {
+        if(mass[id * 2 + 1] > mass[id * 2 + 2]) {
+            swap(&mass[id], &mass[id * 2 + 1]);
+            Heapify(mass, id * 2 + 1, k);
+        } else {
+            swap(&mass[id], &mass[id * 2 + 2]);
+            Heapify(mass, id * 2 + 2, k);
+        }
+    }
+}
+
+void PyramidalSort(int *mass, int n) {
+    int i, j;
+    for(i = n - 1; i >= 0; --i) {
+        Heapify(mass, i, n);
+    }
+    int k = n;
+    for(i = n - 1; i >= 1; --i) {
+        swap(&mass[i], &mass[0]);
+        --k;
+        Heapify(mass, 0, k);
+    }
+}
+
+int Get(int *mass, int n, int key) {
+    int l = 0, r = n;
+    while(l + 1 != r) {
+        int midle = (l + r) / 2;
+        if(mass[midle] > key) {
+            r = midle;
+        } else {
+            if(mass[midle] == key) {
+                return 1;
+            }
+            l = midle;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    int mass[N];
+    int i, n;
+    scanf("%d", &n); // n < 100
+    for(i = 0; i < n; ++i) {
+        scanf("%d", &mass[i]);
+    }
+    PyramidalSort(mass, n);
+    for(i = 0; i < n; ++i) {
+        printf("%d ", mass[i]);
+    }
+    printf("\n");  
+    int q;
+    scanf("%d", &q);
+    for(i = 0; i < q; ++i) {
+        int key;
+        scanf("%d", &key);
+        printf("%d\n", Get(mass, n, key));
+    }
+
+    return 0;
+}
